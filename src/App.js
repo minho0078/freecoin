@@ -13,6 +13,7 @@ class App extends Component {
       useCoinRecord: 0,
       coinRecord: 0,
       mycoin:100000000,
+      newBlock:'',
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -47,6 +48,7 @@ class App extends Component {
 
     this.setState({
       coinRecord: "",
+      newBlock: JSON.stringify(blockCode),
     });
   };
 
@@ -88,6 +90,8 @@ class App extends Component {
           <button onClick={this.addData.bind(this)}>코인 사용</button><br/>
           {/*<button onClick={this.getBlockchain.bind(this)}>프리코인 발행</button>*/}
         </p>
+
+        <div>{this.state.newBlock}</div>
       </div>
     );
   }
