@@ -1,0 +1,22 @@
+{
+  "name": "freecoin",
+  "version": "0.1.0",
+  "main": "src/App.js",
+  "private": true,
+  "devDependencies": {
+    "tsc-watch": "^1.0.22"
+  },
+  "dependencies": {
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1",
+    "react-scripts": "1.1.4",
+    "crypto-js": "^3.1.9-1"
+  },
+  "scripts": {
+    "tsc" : "tsc-watch",
+    "start": "tsc-watch --onSuccess \"react-scripts start\"",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
