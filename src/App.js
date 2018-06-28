@@ -1,12 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-
 import * as blockchain from './blockchain/dist/index';
-
-//var prettyHtml = require('json-pretty-html').default;
-
-import prettyJson from 'json-pretty-html';
 
 class App extends Component {
 
@@ -19,17 +14,9 @@ class App extends Component {
       mycoin:398292000,
       newBlock:'',
     };
-
-    this.handleChange = this.handleChange.bind(this);
-    this.getBlockchain = this.getBlockchain.bind(this);
-    this.addData = this.addData.bind(this);
-    this.numberWithCommas = this.numberWithCommas.bind(this);
-    this.onlyNumber = this.onlyNumber.bind(this.event);
-    this.removeChar = this.removeChar.bind(this.event);
-    this.CoinJson = this.CoinJson.bind(props);
   }
 
-  handleChange(event) {
+  handleChange = (event) => {
     this.setState({useCoinRecord: event.target.value});
   }
 
@@ -108,7 +95,7 @@ class App extends Component {
                             onChange={this.handleChange} 
                             onKeyDown={this.onlyNumber.bind(this.event)}
                             onKeyUp={this.removeChar.bind(this.event)}/> 
-          <button onClick={this.addData.bind(this)}>confirm</button><br/>
+          <button onClick={this.addData}>confirm</button><br/>
         </p>
         <this.CoinJson json={this.state.newBlock}/>
       </div>
