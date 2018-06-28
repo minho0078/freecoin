@@ -4,6 +4,10 @@ import './App.css';
 
 import * as blockchain from './blockchain/dist/index';
 
+//var prettyHtml = require('json-pretty-html').default;
+
+import prettyJson from 'json-pretty-html';
+
 class App extends Component {
 
   constructor(props) {
@@ -12,7 +16,7 @@ class App extends Component {
     this.state = {
       useCoinRecord: 0,
       coinRecord: 0,
-      mycoin:100000000,
+      mycoin:398292000,
       newBlock:'',
     };
 
@@ -22,6 +26,7 @@ class App extends Component {
     this.numberWithCommas = this.numberWithCommas.bind(this);
     this.onlyNumber = this.onlyNumber.bind(this.event);
     this.removeChar = this.removeChar.bind(this.event);
+    this.CoinJson = this.CoinJson.bind(props);
   }
 
   handleChange(event) {
@@ -44,11 +49,11 @@ class App extends Component {
 
   getBlockchain = () => {
     const blockCode = blockchain.createNewBlock(this.state.coinRecord);
-    console.log(blockCode);
+    console.log(JSON.stringify(blockCode, undefined, 2));
 
     this.setState({
       coinRecord: "",
-      newBlock: JSON.stringify(blockCode),
+      newBlock: blockCode,
     });
   };
 
@@ -64,6 +69,7 @@ class App extends Component {
     else
       return false;
   }
+
   removeChar = (event) => {
     event = event || window.event;
     var keyID = (event.which) ? event.which : event.keyCode;
@@ -73,28 +79,43 @@ class App extends Component {
       event.target.value = event.target.value.replace(/[^0-9]/g, "");
   }
 
+  CoinJson = (props) => { 
+    return (
+      <pre>
+        <code>
+          MINING SUCCESS :D !!! YOU GOT A COIN!!!! <br/><br/><br/>
+          index : {props.json.index} <br/>
+          hash : <text className='coinHash'>{props.json.hash}</text> <br/>
+          previousHash : {props.json.previousHash} <br/>
+          data : {props.json.data} <br/>
+          timestamp : {props.json.timestamp} <br/>
+        </code>      
+      </pre>
+    );
+  }
+
   render() {
     return (
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Free Coin by minho</h1>
+          <h1 className="App-title">Free Coin by #####</h1>
           <h1>My Coin : $<span>{this.numberWithCommas(this.state.mycoin)}</span></h1>
         </header>
         <p className="App-intro">
-          사용할 코인 갯수 : <input type="number" 
+          use coin : <input type="number" 
                             value={this.state.useCoinRecord} 
                             onChange={this.handleChange} 
                             onKeyDown={this.onlyNumber.bind(this.event)}
                             onKeyUp={this.removeChar.bind(this.event)}/> 
-          <button onClick={this.addData.bind(this)}>코인 사용</button><br/>
-          {/*<button onClick={this.getBlockchain.bind(this)}>프리코인 발행</button>*/}
+          <button onClick={this.addData.bind(this)}>confirm</button><br/>
         </p>
-
-        <div>{this.state.newBlock}</div>
+        <this.CoinJson json={this.state.newBlock}/>
       </div>
     );
   }
 }
+
+
 
 export default App;
