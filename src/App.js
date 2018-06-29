@@ -23,7 +23,7 @@ class App extends Component {
   addData = () => {
     if(this.state.useCoinRecord > 0 && (this.state.useCoinRecord <= this.state.mycoin)){
       this.setState({
-        mycoin: parseInt(this.state.mycoin) - parseInt(this.state.useCoinRecord),
+        mycoin: Number(this.state.mycoin) - Number(this.state.useCoinRecord),
         useCoinRecord: "",
         coinRecord: this.state.coinRecord + "/?/hash/?/" + this.state.useCoinRecord,
       },() => {
@@ -51,7 +51,7 @@ class App extends Component {
   onlyNumber = (event) => {
     event = event || window.event;
     var keyID = (event.which) ? event.which : event.keyCode;
-    if ( (keyID >= 48 && keyID <= 57) || (keyID >= 96 && keyID <= 105) || keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39 ) 
+    if ( (keyID >= 48 && keyID <= 57) || (keyID >= 96 && keyID <= 105) || keyID === 8 || keyID === 46 || keyID === 37 || keyID === 39 ) 
       return;
     else
       return false;
@@ -60,7 +60,7 @@ class App extends Component {
   removeChar = (event) => {
     event = event || window.event;
     var keyID = (event.which) ? event.which : event.keyCode;
-    if ( keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39 ) 
+    if ( keyID === 8 || keyID === 46 || keyID === 37 || keyID === 39 ) 
       return;
     else
       event.target.value = event.target.value.replace(/[^0-9]/g, "");

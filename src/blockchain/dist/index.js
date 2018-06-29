@@ -1,4 +1,3 @@
-"use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const CryptoJS = require("crypto-js");
 class Block {
@@ -18,7 +17,7 @@ Block.validateStructure = (aBlock) => typeof aBlock.index === "number"
     && typeof aBlock.data === "string";
 const genesisBlock = new Block(0, "20202020202020", "", "Hello", 123456);
 let blockchain = [genesisBlock];
-const getBlockchain = () => blockchain;
+//const getBlockchain = () => blockchain;
 const getLatesBlock = () => blockchain[blockchain.length - 1];
 const getNewTimeStamp = () => Math.round(new Date().getTime() / 1000);
 const createNewBlock = (data) => {
